@@ -10,7 +10,7 @@
   <a href="#"><img src="https://img.shields.io/badge/Next.js-15-4F46E5?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js 15"/></a>
   <a href="#"><img src="https://img.shields.io/badge/React-19-4F46E5?style=flat-square&logo=react&logoColor=white" alt="React 19"/></a>
   <a href="#"><img src="https://img.shields.io/badge/shadcn%2Fui-latest-4F46E5?style=flat-square" alt="shadcn/ui"/></a>
-  <a href="LICENSE"><img src="https://img.shields.io/github/license/grovs-io/dashboard?style=flat-square&color=4F46E5" alt="MIT License"/></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT%20%2B%20EE-4F46E5?style=flat-square" alt="MIT + Enterprise License"/></a>
   <a href="https://github.com/grovs-io/dashboard/stargazers"><img src="https://img.shields.io/github/stars/grovs-io/dashboard?style=flat-square&color=4F46E5" alt="GitHub stars"/></a>
 </p>
 
@@ -89,7 +89,20 @@ src/
 ├── hooks/                   # Custom React hooks
 ├── lib/                     # Utilities (API client, storage, helpers)
 └── constants/               # App constants
+ee/                          # Enterprise Edition (revenue, audit log, SSO/SCIM) — see license below
+├── api/ hooks/ components/ types/ constants/   # mirror src/, imported as @ee/*
+└── app/                     # page bodies re-exported by routes under src/app/(protected)/
 ```
+
+## Enterprise Edition
+
+The features under `ee/` are switched on with `NEXT_PUBLIC_GROVS_EE=true` at build time. Without it the core edition runs unchanged and the enterprise screens stay hidden.
+
+- **Revenue tracking** — IAP revenue metrics, per-link and per-campaign revenue columns, revenue setup steps
+- **Audit log** — Tamper-evident audit log explorer with SIEM export tokens
+- **Enterprise SSO and SCIM** — Per-instance OIDC connection with verified email domains and SCIM provisioning settings
+
+Production use of enterprise features requires a subscription. See [ee/LICENSE](ee/LICENSE).
 
 ## Environment Variables
 
@@ -121,4 +134,7 @@ See [SECURITY.md](SECURITY.md) for our vulnerability disclosure policy.
 
 ## License
 
-[MIT](LICENSE)
+Grovs uses a dual license model:
+
+- **Core (MIT)** — Everything outside the `ee/` directory is licensed under the [MIT License](LICENSE). You can freely use, modify, and distribute it.
+- **Enterprise** — The `ee/` directory contains enterprise features (revenue tracking, audit log, enterprise SSO and SCIM) under the [Grovs Enterprise License](ee/LICENSE). Production use of enterprise features requires a valid subscription.

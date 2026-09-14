@@ -4,7 +4,7 @@ import type { AccessorKeyColumnDef } from "@tanstack/react-table";
 import DataTable from "@/components/common/DataTable";
 import VisitorsEmptyState from "./VisitorsEmptyState";
 import ReferralsEmptyState from "./ReferralsEmptyState";
-import RevenueEmptyState from "../revenue/RevenueEmptyState";
+import RevenueEmptyState from "@ee/components/revenue/RevenueEmptyState";
 
 interface AudienceTableProps<T> {
   columns: AccessorKeyColumnDef<T>[];

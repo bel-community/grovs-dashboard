@@ -7,7 +7,10 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     setupFiles: ["./src/test-setup.ts"],
-    include: ["src/**/__tests__/**/*.test.{ts,tsx}"],
+    include: [
+      "src/**/__tests__/**/*.test.{ts,tsx}",
+      "ee/**/__tests__/**/*.test.{ts,tsx}",
+    ],
     coverage: {
       provider: "v8",
       include: [
@@ -15,6 +18,8 @@ export default defineConfig({
         "src/constants/**",
         "src/schemas/**",
         "src/hooks/**",
+        "ee/hooks/**",
+        "ee/constants/**",
       ],
       exclude: [
         "src/lib/api.ts",
@@ -39,6 +44,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      "@ee": path.resolve(__dirname, "./ee"),
       "@": path.resolve(__dirname, "./src"),
     },
   },

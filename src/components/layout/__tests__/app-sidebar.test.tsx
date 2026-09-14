@@ -14,7 +14,7 @@ vi.mock("@/context/useProjectSelection", () => ({
   useProjectSelection: () => ({ selectedInstance: { id: "i1" } }),
 }));
 
-vi.mock("@/hooks/queries/useAuditQueries", () => ({
+vi.mock("@ee/hooks/queries/useAuditQueries", () => ({
   useAuditLogAccess: () => ({
     allowed: accessState.allowed,
     isResolving: false,

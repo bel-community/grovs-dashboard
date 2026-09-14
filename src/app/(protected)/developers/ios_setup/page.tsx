@@ -65,7 +65,7 @@ import Step0RegisterApp from "./steps/Step0RegisterApp";
 import Step1URLScheme from "./steps/Step1URLScheme";
 import Step2AddSDK from "./steps/Step2AddSDK";
 import Step3PushNotifications from "./steps/Step3PushNotifications";
-import Step4Revenue from "./steps/Step4Revenue";
+import Step4Revenue from "@ee/app/developers/ios_setup/Step4Revenue";
 import Step5InitializeSDK from "./steps/Step5InitializeSDK";
 
 type IosStepName =

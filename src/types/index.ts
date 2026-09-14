@@ -46,7 +46,7 @@ export type {
   VisitorDetailMetrics,
   AggregatedVisitorMetrics,
 } from "./visitor";
-export type { Purchase, RevenueMetric } from "./purchase";
+export type { Purchase, RevenueMetric } from "@ee/types/purchase";
 export type {
   MetricValues,
   MetricsOverview,
@@ -153,7 +153,7 @@ export type {
   AuditExportToken,
   AuditExportTokensResponse,
   AuditExportTokenCreateResponse,
-} from "./audit";
+} from "@ee/types/audit";
 export type {
   SsoDomain,
   SsoConnection,
@@ -161,4 +161,4 @@ export type {
   SsoConnectionUpsertPayload,
   SsoDiscoverResponse,
   SsoRefusalBody,
-} from "./sso";
+} from "@ee/types/sso";

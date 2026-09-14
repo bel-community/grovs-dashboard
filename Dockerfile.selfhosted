@@ -13,6 +13,7 @@ RUN npm ci
 COPY next-env.d.ts next.config.ts postcss.config.mjs tailwind.config.ts tsconfig.json ./
 COPY public ./public
 COPY src ./src
+COPY ee ./ee
 
 ARG NEXT_PUBLIC_API_PATH=/api/v1
 ARG NEXT_PUBLIC_SELF_HOSTED=true

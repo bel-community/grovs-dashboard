@@ -50,13 +50,13 @@ import React, { useEffect, useMemo, useState } from "react";
 import { DateRange } from "react-day-picker";
 import { Alert, AlertTitle } from "@/components/ui/alert";
 import SessionStorage from "@/lib/SessionStorage";
-import RevenueTracking from "@/components/settings/RevenueTracking";
+import RevenueTracking from "@ee/components/settings/RevenueTracking";
 import InviteLinkDialog from "@/components/settings/InviteLinkDialog";
 import ActionConfirm from "@/components/common/action-confirm";
 import { IS_ENTERPRISE, IS_SELF_HOSTED } from "@/lib/edition";
 import MigrationDeepLinkRedirect from "./MigrationDeepLinkRedirect";
-import SsoSection from "@/components/settings/sso/SsoSection";
-import { useSsoAccess } from "@/hooks/queries/useSsoQueries";
+import SsoSection from "@ee/components/settings/sso/SsoSection";
+import { useSsoAccess } from "@ee/hooks/queries/useSsoQueries";
 
 const SettingsPage = () => {
   const { selectedInstance, setSelectedInstance } = useProjectSelection();

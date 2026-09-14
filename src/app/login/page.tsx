@@ -21,7 +21,7 @@ import {
 } from "@/schemas/auth";
 import { ENTERPRISE_SSO, type SSOLogin } from "@/api/auth/userService";
 import { useSSOProviders } from "@/hooks/useSSOProviders";
-import { useSSODiscovery, type SsoDiscovery } from "@/hooks/useSSODiscovery";
+import { useSSODiscovery, type SsoDiscovery } from "@ee/hooks/useSSODiscovery";
 import { getSsoRefusal } from "@/lib/ApiError";
 
 const LOGIN_DEFAULT_VALUES: LoginFormValues = {

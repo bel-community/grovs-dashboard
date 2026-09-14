@@ -29,7 +29,7 @@ import {
 import { NavSupport } from "@/components/layout/nav-support";
 import { IS_ENTERPRISE } from "@/lib/edition";
 import { useProjectSelection } from "@/context/useProjectSelection";
-import { useAuditLogAccess } from "@/hooks/queries/useAuditQueries";
+import { useAuditLogAccess } from "@ee/hooks/queries/useAuditQueries";
 import type { navItemType } from "@/components/layout/nav-main";
 
 const data = {

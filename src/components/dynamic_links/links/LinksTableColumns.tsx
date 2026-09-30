@@ -2,7 +2,8 @@ import { AccessorKeyColumnDef } from "@tanstack/react-table";
 
 import { Button } from "../../ui/button";
 import { cn, parseSecondsInDaysHoursMinutesSeconds } from "@/lib/utils";
-import { ChevronDown, ChevronsUpDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronsUpDown, ChevronUp, QrCode } from "lucide-react";
+import { downloadLinkQrCode } from "@/lib/qrCodeHelper";
 
 import { formatShortDate } from "@/lib/dateUtils";
 import {
@@ -390,6 +391,36 @@ export const getLinksTableColumns = (
         <p>{formatShortDate(row.original.updated_at)}</p>
       </div>
     ),
+  },
+  {
+    accessorKey: "qr",
+    size: 50,
+    maxSize: 50,
+    header: () => <div className="w-[50px]"></div>,
+    cell: ({ row }) => {
+      const accessPath = row.original.access_path;
+      if (!accessPath) return null;
+      return (
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label="Download QR code"
+              onClick={(event) => {
+                event.stopPropagation();
+                void downloadLinkQrCode(accessPath);
+              }}
+            >
+              <QrCode className="h-4 w-4" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Download QR code</p>
+          </TooltipContent>
+        </Tooltip>
+      );
+    },
   },
 ];
 

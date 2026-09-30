@@ -139,6 +139,7 @@ const LinksPage = ({ campaignId }: { campaignId?: string }) => {
     "reactivations",
     "time_spent",
     "date",
+    "qr",
   ]);
 
   const refreshLinks = useCallback(() => {
@@ -227,7 +228,7 @@ const LinksPage = ({ campaignId }: { campaignId?: string }) => {
         ? baseColumns
         : [...baseColumns.slice(0, -2), "date"];
 
-    setSelectedColumns(fullColumns);
+    setSelectedColumns([...fullColumns, "qr"]);
   }, [selectedInstance]);
 
   return (

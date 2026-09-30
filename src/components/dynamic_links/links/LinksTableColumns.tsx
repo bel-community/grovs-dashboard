@@ -2,7 +2,8 @@ import { AccessorKeyColumnDef } from "@tanstack/react-table";
 
 import { Button } from "../../ui/button";
 import { cn, parseSecondsInDaysHoursMinutesSeconds } from "@/lib/utils";
-import { ChevronDown, ChevronsUpDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronsUpDown, ChevronUp, QrCode } from "lucide-react";
+import { downloadLinkQrCode } from "@/lib/qrCodeHelper";
 
 import { formatShortDate } from "@/lib/dateUtils";
 import {
@@ -39,7 +40,8 @@ const headerButtonClass = "font-medium text-foreground";
 export const getLinksTableColumns = (
   sort: SortType,
   setSort: React.Dispatch<React.SetStateAction<SortType>>,
-  _handleEditLink: (value: LinkData) => void
+  _handleEditLink: (value: LinkData) => void,
+  linkHostname?: string
 ): AccessorKeyColumnDef<LinkData>[] => [
   {
     accessorKey: "ads_platform",
@@ -390,6 +392,37 @@ export const getLinksTableColumns = (
         <p>{formatShortDate(row.original.updated_at)}</p>
       </div>
     ),
+  },
+  {
+    accessorKey: "qr",
+    size: 50,
+    maxSize: 50,
+    header: () => <div className="w-[50px]"></div>,
+    cell: ({ row }) => {
+      const { path } = row.original;
+      if (!linkHostname || !path) return null;
+      const linkUrl = `https://${linkHostname}/${path}`;
+      return (
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label="Download QR code"
+              onClick={(event) => {
+                event.stopPropagation();
+                void downloadLinkQrCode(linkUrl);
+              }}
+            >
+              <QrCode className="h-4 w-4" />
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Download QR code</p>
+          </TooltipContent>
+        </Tooltip>
+      );
+    },
   },
 ];
 

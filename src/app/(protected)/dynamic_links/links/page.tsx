@@ -20,6 +20,7 @@ import {
 } from "@/lib/dateUtils";
 import { ACTIVE, ARCHIVED } from "@/constants/OptionsConstants";
 import { useProjectSelection } from "@/context/useProjectSelection";
+import { useLinkHostname } from "@/hooks/useLinkHostname";
 import { IS_ENTERPRISE } from "@/lib/edition";
 import {
   showErrorNotification,
@@ -45,6 +46,7 @@ import { useUrlState } from "@/hooks/useUrlState";
 
 const LinksPage = ({ campaignId }: { campaignId?: string }) => {
   const { selectedInstance, selectedProject } = useProjectSelection();
+  const linkHostname = useLinkHostname();
   // Gated endpoints 422 past the plan window; stop the range being picked at all.
   const retentionMin = useMemo(
     () => retentionMinDate(selectedInstance?.analytics_retention, new Date()),
@@ -139,6 +141,7 @@ const LinksPage = ({ campaignId }: { campaignId?: string }) => {
     "reactivations",
     "time_spent",
     "date",
+    "qr",
   ]);
 
   const refreshLinks = useCallback(() => {
@@ -186,8 +189,8 @@ const LinksPage = ({ campaignId }: { campaignId?: string }) => {
   );
 
   const columns = useMemo(
-    () => getLinksTableColumns(sort, setSort, handleEditLink),
-    [sort, setSort, handleEditLink]
+    () => getLinksTableColumns(sort, setSort, handleEditLink, linkHostname),
+    [sort, setSort, handleEditLink, linkHostname]
   );
 
   const handleArchiveCampaign = async () => {
@@ -227,7 +230,7 @@ const LinksPage = ({ campaignId }: { campaignId?: string }) => {
         ? baseColumns
         : [...baseColumns.slice(0, -2), "date"];
 
-    setSelectedColumns(fullColumns);
+    setSelectedColumns([...fullColumns, "qr"]);
   }, [selectedInstance]);
 
   return (
